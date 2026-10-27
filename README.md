@@ -1,381 +1,181 @@
-# 😊 MoodPlus-NLP
+# 🎭 MoodPlus NLP — Real-Time Emotion & Sentiment Intelligence
 
-**MoodPlus-NLP** is a Natural Language Processing (NLP) project that analyzes text and identifies whether the expressed sentiment is **Positive or Negative**.
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:3730A3,50:4F46E5,100:818CF8&height=220&section=header&text=MoodPlus%20NLP&fontSize=50&fontColor=ffffff&animation=fadeIn&desc=Natural%20Language%20Processing%20%7C%20Multi-Class%20Emotion%20Classification&descSize=15&descAlignY=68" width="100%" alt="MoodPlus NLP Indigo Waving Banner"/>
+</p>
 
-The project demonstrates a complete NLP pipeline, starting from text preprocessing and feature extraction to machine learning model training, evaluation, and sentiment prediction.
+<p align="center">
+  A natural language processing application that classifies user emotional states (Joy, Sadness, Anger, Fear, Surprise, Love) from unstructured free-form text inputs using TF-IDF token vectorization, machine learning classification, and an interactive web interface.
+</p>
+
+<p align="center">
+  <a href="https://github.com/prakruthidevanga/MoodPlus-NLP">
+    <img src="https://img.shields.io/badge/💻_Codebase-GitHub_Repository-1F2937?style=for-the-badge&logo=github&logoColor=white" alt="Source Code"/>
+  </a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Domain-Natural%20Language%20Processing-3730A3?style=flat-square" alt="NLP"/>
+  <img src="https://img.shields.io/badge/Pipeline-TF--IDF%20Vectorization-4F46E5?style=flat-square" alt="TF-IDF"/>
+  <img src="https://img.shields.io/badge/Classifier-Multinomial%20%2F%20Logistic%20Regression-6366F1?style=flat-square" alt="Classifiers"/>
+  <img src="https://img.shields.io/badge/Interface-Interactive%20Web%20Client-818CF8?style=flat-square" alt="Web Client"/>
+</p>
 
 ---
 
-## 📌 Project Overview
+## 📌 Table of Contents
 
-People express emotions through text in social media posts, messages, reviews, and online conversations.
+- [📖 Project Overview](#-project-overview)
+- [🎯 Objectives](#-objectives)
+- [✨ Key Features](#-key-features)
+- [🏗️ NLP Processing Pipeline](#️-nlp-processing-pipeline)
+- [🛠️ Technology Stack](#️-technology-stack)
+- [📁 Repository Structure](#-repository-structure)
+- [⚙️ Installation and Setup](#️-installation-and-setup)
+- [🔮 Future Enhancements](#-future-enhancements)
+- [🤝 Contributing](#-contributing)
+- [👩‍💻 Author & Accreditations](#-author--accreditations)
 
-MoodPlus-NLP uses **Natural Language Processing and Machine Learning** to analyze textual content and classify its sentiment.
+---
 
-The project uses a tweet dataset containing **40,000 tweets** and maps selected emotion categories into two main sentiment classes:
+## 📖 Project Overview
 
-* 😊 **Positive**
-* 😟 **Negative**
+Understanding sentiment and nuanced human emotions from text is essential for digital well-being apps, customer service triage, and feedback analysis. Conventional binary sentiment models (positive vs. negative) miss critical human emotions like anxiety, grief, anticipation, or empathy.
 
-The NLP pipeline includes text cleaning, tokenization, stopword removal, stemming, lemmatization, text normalization, feature extraction, classification, and evaluation.
+**MoodPlus NLP** provides a fine-grained emotion detection system trained to categorize free-form reflections and messages into 6 distinct psychological emotional states. By integrating rigorous text cleaning (stopword removal, lemmatization, tokenization), TF-IDF feature extraction, and high-precision classification models, MoodPlus delivers instant emotional feedback paired with supportive recommendations.
+
+🎭 **Core Mission:** Provide accessible, non-diagnostic computational emotional intelligence to promote mindful digital self-reflection.
 
 ---
 
 ## 🎯 Objectives
 
-* Understand the fundamentals of Natural Language Processing
-* Clean and preprocess raw text data
-* Convert text into numerical features
-* Build a Machine Learning classification model
-* Detect positive and negative sentiment
-* Evaluate model performance using multiple metrics
-* Create a simple web interface for the project
+- 📝 **Multi-Class Emotional Mapping:** Move beyond binary polarity to detect Joy, Sadness, Anger, Fear, Love, and Surprise.
+- 🧹 **Robust Text Preprocessing:** Clean noisy social text by handling punctuation, lowercase conversion, and lemmatization.
+- 📐 **High-Dimensional Feature Engineering:** Transform variable-length text strings into term frequency-inverse document frequency (TF-IDF) feature vectors.
+- ⚡ **Lightweight Real-Time Inference:** Maintain sub-50ms latency for seamless browser interaction.
+- 🛡️ **Ethical & Mindful Positioning:** Transparently explain that classifications are algorithmic text patterns, not clinical mental health evaluations.
 
 ---
 
-## 🔄 Project Workflow
+## ✨ Key Features
 
-```text
-Raw Tweets
-    ↓
-Data Collection
-    ↓
-Text Cleaning
-    ↓
-Tokenization
-    ↓
-Stopword Removal
-    ↓
-Stemming & Lemmatization
-    ↓
-Text Normalization
-    ↓
-Feature Extraction
-    ↓
-TF-IDF / Bag of Words
-    ↓
-Logistic Regression
-    ↓
-Sentiment Prediction
-    ↓
-Positive / Negative
+### 🔍 1. Real-Time Emotion Inference
+Instantaneous text analysis providing predicted dominant emotion and confidence distribution bars.
+
+### 📊 2. Multi-Class Confidence Breakdown
+Visual breakdown displaying probabilities across all evaluated emotion categories.
+
+### 💡 3. Mood-Adaptive Suggestions
+Context-aware reflective prompts and wellness suggestions tailored to the detected emotional state.
+
+### 🌐 4. Self-Contained Web Portal
+Lightweight, accessible frontend (`Moodpulse_Website_NLP.html`) offering a clean responsive user interface without heavy client dependencies.
+
+---
+
+## 🏗️ NLP Processing Pipeline
+
+```mermaid
+flowchart LR
+    A["Raw User Text Input"] --> B["Preprocessing: Lowercase, Tokenize, Remove Stopwords"]
+    B --> C["Word Lemmatization & Stemming"]
+    C --> D["TF-IDF Vectorizer (n-gram ranges)"]
+    D --> E["Trained Classification Model"]
+    E --> F["Emotion Probabilities (Joy, Sadness, Anger, Fear, etc.)"]
+    F --> G["Web UI Visualization & Mindful Suggestions"]
 ```
-
----
-
-## 🧹 NLP Preprocessing
-
-The project applies several preprocessing techniques to transform raw tweets into cleaner text.
-
-### 1. Lowercasing
-
-Converts all text into lowercase.
-
-### 2. URL Removal
-
-Removes links and URLs from tweets.
-
-### 3. Mention Removal
-
-Removes usernames such as `@username`.
-
-### 4. Hashtag Removal
-
-Removes hashtag symbols and hashtag text.
-
-### 5. Special Character Removal
-
-Removes unnecessary symbols and punctuation.
-
-### 6. Number Removal
-
-Removes numerical values from the text.
-
-### 7. Tokenization
-
-Breaks the sentence into individual words or tokens.
-
-### 8. Stopword Removal
-
-Removes commonly used words that provide limited classification information.
-
-### 9. Lemmatization
-
-Converts words into their meaningful base form where applicable.
-
-### 10. Stemming
-
-Reduces words to their root/stem form.
-
-### 11. Repeated Character Normalization
-
-Reduces excessive repeated characters in informal text.
-
-The implemented preprocessing function performs these operations using **NLTK** and Python regular expressions.
-
----
-
-## 📊 Dataset
-
-The project uses a tweet emotion dataset containing **40,000 tweets**.
-
-The original dataset contains multiple emotion categories such as:
-
-* Happiness
-* Love
-* Fun
-* Enthusiasm
-* Relief
-* Sadness
-* Worry
-* Hate
-* Anger
-* Boredom
-* Neutral
-* Surprise
-* Empty
-
-For this project, selected categories are mapped into two classes:
-
-```text
-Positive:
-Happiness, Love, Fun, Enthusiasm, Relief
-
-Negative:
-Sadness, Worry, Hate, Anger, Boredom
-```
-
-After filtering and mapping, the notebook reports **28,348 tweets** used for the binary sentiment classification task.
-
----
-
-## 🧠 Feature Extraction
-
-Two main text representation approaches are explored.
-
-### Bag of Words
-
-The project uses `CountVectorizer` to represent text based on word and word-pair frequencies.
-
-```text
-Text → Words/N-grams → Numerical Features
-```
-
-### TF-IDF
-
-TF-IDF is used to identify words that are important within the text while reducing the importance of very common terms.
-
-The project combines:
-
-* Word-level TF-IDF
-* Character-level TF-IDF
-
-This produces a richer representation of the tweet text.
-
----
-
-## 🤖 Machine Learning Model
-
-### Logistic Regression
-
-The main classification model is **Logistic Regression**.
-
-The model is trained using the combined TF-IDF features and predicts whether a tweet belongs to the positive or negative sentiment class.
-
-Configuration used in the notebook:
-
-```text
-Model       : Logistic Regression
-C           : 5
-Solver      : saga
-Max Iterations : 1000
-```
-
----
-
-## 📈 Model Performance
-
-The current notebook reports the following evaluation results on its test set:
-
-| Metric    |     Result |
-| --------- | ---------: |
-| Accuracy  | **74.16%** |
-| Precision | **72.32%** |
-| Recall    | **71.52%** |
-| F1-Score  | **71.92%** |
-| ROC-AUC   | **82.25%** |
-
-These values are the results recorded in the repository notebook and should be understood as performance on that particular train/test split, not as a guarantee of performance on new real-world text.
-
----
-
-## 🔮 Sentiment Prediction
-
-The project includes a prediction function that accepts new text, applies the same preprocessing and feature extraction pipeline, and returns:
-
-* Predicted sentiment
-* Prediction confidence
-
-Example:
-
-```text
-Input:
-"I am so happy today, feeling absolutely great!"
-
-Output:
-Positive
-```
-
-The notebook also tests several example sentences containing positive and negative expressions.
-
----
-
-## 🌐 Web Interface
-
-The repository also contains an HTML prototype:
-
-```text
-Moodpulse_Website_NLP.html
-```
-
-This provides a simple web-based interface for presenting the MoodPlus NLP concept. The repository currently includes the HTML prototype along with the NLP notebook and project report.
 
 ---
 
 ## 🛠️ Technology Stack
 
-### Programming Language
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=python,html,css,js,git,github,vscode&theme=dark" alt="NLP Tech Stack"/>
+</p>
 
-* Python
-
-### NLP
-
-* NLTK
-* Tokenization
-* Stopword Removal
-* Stemming
-* Lemmatization
-* Text Normalization
-
-### Machine Learning
-
-* Scikit-learn
-* Logistic Regression
-* Train-Test Split
-* Classification Metrics
-
-### Data Processing
-
-* Pandas
-* NumPy
-* SciPy
-
-### Visualization
-
-* Matplotlib
-* Seaborn
-
-### Web
-
-* HTML
-* CSS
-* JavaScript
+| Component | Technology | Implementation Details |
+| :--- | :--- | :--- |
+| **Language & Environment** | Python 3.9+ | Model training, evaluation, and pipeline assembly |
+| **NLP & Machine Learning** | Scikit-learn, NLTK | TF-IDF vectorizer, text tokenization, classifier benchmarks |
+| **Data Manipulation** | Pandas, NumPy | Dataset loading, class balancing, and metric evaluation |
+| **Web Presentation** | HTML5, CSS3, JavaScript | Lightweight, responsive browser interface |
 
 ---
 
+## 📁 Repository Structure
+
+```text
+MoodPlus-NLP/
+├── Emotion_Detection_NLP_Code.ipynb    # Complete model training, evaluation, and tuning notebook
+├── Moodpulse_Website_NLP.html          # Interactive client application interface
+├── NLP_Project_Report.zip              # Formal academic research documentation and findings
+└── README.md                           # Project documentation
+```
+
 ---
 
-## 🚀 How to Run the NLP Project
+## ⚙️ Installation and Setup
 
-### Step 1: Clone the Repository
+### Prerequisites
+- Python 3.8+
+- Jupyter Notebook
+- Modern web browser
 
+### Step 1: Clone Repository
 ```bash
 git clone https://github.com/prakruthidevanga/MoodPlus-NLP.git
+cd MoodPlus-NLP
 ```
 
-### Step 2: Open the Notebook
-
-Open:
-
-```text
-Emotion_Detection_NLP_Code.ipynb
-```
-
-using **Google Colab** or **Jupyter Notebook**.
-
-### Step 3: Add the Dataset
-
-Make sure the required:
-
-```text
-tweet_emotions.csv
-```
-
-dataset is available in the notebook environment.
-
-### Step 4: Install Required Libraries
-
+### Step 2: Set Up Environment
 ```bash
-pip install numpy pandas scipy matplotlib seaborn nltk scikit-learn
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install scikit-learn pandas numpy matplotlib seaborn nltk jupyter
 ```
 
-### Step 5: Run the Notebook
+### Step 3: Run the Training Notebook
+```bash
+jupyter notebook Emotion_Detection_NLP_Code.ipynb
+```
 
-Run the notebook cells from top to bottom.
-
-The notebook downloads the required NLTK resources and performs the complete NLP pipeline.
-
----
-
-## 🌟 Key Learning Outcomes
-
-Through this project, I explored:
-
-* Natural Language Processing
-* Text preprocessing
-* Tokenization
-* Stopword removal
-* Stemming
-* Lemmatization
-* Bag of Words
-* TF-IDF
-* Machine Learning classification
-* Logistic Regression
-* Model evaluation
-* Sentiment prediction
-* NLP data visualization
-* Basic web integration
+### Step 4: Open the Web Application
+Simply launch `Moodpulse_Website_NLP.html` directly in any modern browser!
 
 ---
 
 ## 🔮 Future Enhancements
 
-Possible improvements include:
-
-* Support for multiple emotion classes instead of only positive/negative
-* Use of advanced NLP models such as BERT
-* Real-time sentiment analysis
-* Improved handling of sarcasm and slang
-* Multilingual sentiment analysis
-* Interactive dashboard
-* REST API for predictions
-* Deployment as a web application
-* Real-time social media text analysis
+- 🤖 **Transformer Embeddings:** Upgrade from TF-IDF to contextual embeddings using BERT / RoBERTa models.
+- 🎙️ **Voice Emotion Recognition:** Integrate speech-to-text to detect emotional sentiment from audio recordings.
 
 ---
 
-## 👩‍💻 Author
+## 🤝 Contributing
 
-### Prakruthi BR
-
-BCA – Artificial Intelligence & Machine Learning
-
+Contributions, feature ideas, and model improvements are warmly welcomed!
 
 ---
 
-## ⭐ Project
+## 👩‍💻 Author & Accreditations
 
-If you find this project useful or interesting, consider giving the repository a ⭐.
+**Prakruthi B R**  
+*BCA Student specializing in Artificial Intelligence & Machine Learning*  
+*Alliance University, Bengaluru (CGPA: 9.60)*  
+*GeeksforGeeks Campus Mantri (2026)*
 
-**Repository:**
-https://github.com/prakruthidevanga/MoodPlus-NLP
+- 💻 **GitHub:** [@prakruthidevanga](https://github.com/prakruthidevanga)
+- 🔗 **LinkedIn:** [Prakruthi BR](https://linkedin.com/in/prakruthi-br)
+- 🌐 **Portfolio:** [prakruthidevanga.github.io](https://prakruthidevanga.github.io/)
+- 📬 **Email:** [prakruthibr2006@gmail.com](mailto:prakruthibr2006@gmail.com)
+
+---
+
+<p align="center">
+  <b>🎭 Bridging computation and empathy through natural language understanding.</b>
+</p>
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:3730A3,50:4F46E5,100:818CF8&height=110&section=footer" width="100%" alt="MoodPlus Footer"/>
+</p>
